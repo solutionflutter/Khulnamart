@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1041813282338",
+    "project_id": "khulnamart-d6931",
+    "storage_bucket": "khulnamart-d6931.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041813282338:android:3f1b9ede5f621c0a99b47b",
+        "android_client_info": {
+          "package_name": "com.example.khulnamart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041813282338-dhtr3rlp04bdkaje89ctu5l6svvd6qmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlKhAvTS_1QHYwiG2QDdrQDrdneqRSrK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041813282338-dhtr3rlp04bdkaje89ctu5l6svvd6qmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
