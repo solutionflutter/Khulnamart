@@ -14,133 +14,143 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        overflow: Overflow.visible,
-        children: [
-          Positioned(
-            right: MediaQuery.of(context).size.width / 20,
-            top: MediaQuery.of(context).size.height / 25,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 18,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      iconSize: 20,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [
+              //Appbar
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 12),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black87,
+                        size: 20,
+                      ),
                       onPressed: () {},
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 70.0,
-                      vertical: 5,
-                    ),
-                    child: Text(
-                      "Login Screen",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
+
+                    //padding of loging page
+
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 75),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 25,
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: Text(
+                          "Login Page",
+                          style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromRGBO(21, 21, 21, .7),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+
+              // calling loginScreenBody function
+              loginScreenBody(context),
+            ],
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 5.5,
-            left: MediaQuery.of(context).size.width / 3.5,
+        ),
+      ),
+    );
+  }
+
+  Widget loginScreenBody(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 15),
             child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 7,
+              height: MediaQuery.of(context).size.height / 6,
+              width: MediaQuery.of(context).size.width / 2,
               child: Text(
-                "KHULNA\n  MART",
-                style: GoogleFonts.montserrat(
-                  fontStyle: FontStyle.italic,
+                "Khulna\nMart",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.roboto(
+                  fontSize: 45,
+                  color: Color.fromRGBO(21, 21, 21, .7),
                   fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(21, 21, 21, .6),
-                  fontSize: 35,
+                  fontStyle: FontStyle.normal,
                 ),
               ),
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2.5,
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 15),
             child: Container(
-              height: MediaQuery.of(context).size.height / 2.5,
+              height: MediaQuery.of(context).size.height / 3,
               width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Enter your Email Address",
-                        hintStyle: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(21, 21, 21, .6),
-                          fontStyle: FontStyle.italic,
-                        ),
-                        labelStyle: GoogleFonts.montserrat(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromRGBO(21, 21, 21, .6),
-                          fontStyle: FontStyle.normal,
-                        ),
-                        labelText: "Email",
+                  TextFormField(
+                    validator: (email) {
+                      if (email.isEmpty) {
+                        return "Required Email";
+                      } else if (email.contains("@")) {
+                        return "It is not a valid email";
+                      } else {
+                        return "Login";
+                      }
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Enter Your Email Address",
+                      labelText: "Email Address",
+                      hintStyle: GoogleFonts.roboto(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.italic,
+                        color: Color.fromRGBO(21, 21, 21, .6),
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (email) {
-                        if (email.isEmpty) {
-                          return "input field should not be empty.";
-                        } else if (email.length < 10) {
-                          return "invalide email";
-                        } else {
-                          return "your email is successfully store in firbase";
-                        }
-                      },
+                      labelStyle: GoogleFonts.roboto(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromRGBO(21, 21, 21, .6),
+                      ),
+                      hoverColor: Color.fromRGBO(0, 0, 255, .4),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
+                    padding: EdgeInsets.symmetric(vertical: 20),
                     child: TextFormField(
                       obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Enter your password",
-                        hintStyle: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(21, 21, 21, .6),
-                          fontStyle: FontStyle.italic,
-                        ),
-                        labelStyle: GoogleFonts.montserrat(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromRGBO(21, 21, 21, .6),
-                          fontStyle: FontStyle.normal,
-                        ),
-                        labelText: "Password",
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (email) {
-                        if (email.isEmpty) {
-                          return "input field should not be empty.";
-                        } else if (email.length < 10) {
-                          return "invalide password";
+                      validator: (password) {
+                        if (password.isEmpty) {
+                          return "Password Required";
+                        } else if (password.length < 4) {
+                          return "Password is required 6 character min";
                         } else {
-                          return "your password is successfully store in firbase";
+                          return "Login";
                         }
                       },
+                      decoration: InputDecoration(
+                        hintText: "Enter Your Password",
+                        labelText: "Password",
+                        hintStyle: GoogleFonts.roboto(
+                          fontSize: 14,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(21, 21, 21, .6),
+                        ),
+                        labelStyle: GoogleFonts.roboto(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromRGBO(21, 21, 21, .6)),
+                        hoverColor: Color.fromRGBO(0, 0, 255, .6),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
